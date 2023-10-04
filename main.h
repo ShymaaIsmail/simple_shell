@@ -10,5 +10,6 @@
 
 void free_all(int ptr_num, ...);
 int check_mode();
-
+void display_user_prompt(int ac, char **argv);
+void process_script(int ac, char **argv);
 #endif
