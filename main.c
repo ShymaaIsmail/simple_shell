@@ -8,6 +8,15 @@
 */
 int main(int ac, char **argv)
 {
+int is_interactive = check_mode();
+if (is_interactive)
+{
+ display_user_prompt(ac, argv);
+}
+else
+{
+process_script(ac, argv);
+}
 char *prompt = "(Eshell) $ ";
 char *lineptr, *lineptr_copy = NULL, *token;
 const char *delim = " \n";
