@@ -9,5 +9,6 @@
 #include "string.h"
 
 void free_all(int ptr_num, ...);
+int check_mode();
 
 #endif
