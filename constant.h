@@ -3,7 +3,7 @@
 
 /* shell program special character*/
 #define Prompt_Title  "$"
-#define Command_DeLim  " \n"
+#define Command_DeLim  "\n"
 #define Space_Delim  " "
 #define New_Line_Delim  " \n"
 

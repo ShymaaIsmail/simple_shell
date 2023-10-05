@@ -10,9 +10,9 @@ int main(int ac, char **argv)
 {
 	int is_interactive = check_mode();
 
-	if (is_interactive)
+	if (is_interactive && ac > 0)
 	{
-		display_user_prompt(ac, argv);
+		display_user_prompt(argv);
 	}
 	else
 	{

@@ -12,10 +12,10 @@
 
 void free_all(int ptr_num, ...);
 int check_mode(void);
-void display_user_prompt(int ac, char **argv);
+void display_user_prompt(char **argv);
 void process_non_interactive_script(int ac, char **argv);
 void execute_command(void);
-void extract_tokens(void);
+char **extract_tokens(int chars_count, char *user_input_ptr);
 void execute_eof(void);
 void execute_signal_interupt(void);
 #endif
