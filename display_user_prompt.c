@@ -25,6 +25,10 @@ void display_user_prompt(char **argv)
 			execute_signal_interupt();
 		}
 		argv = extract_tokens(chars_count, user_input_ptr);
+		if (argv != NULL)
+		{
+			execute_command(program_name, argv);
+		}
 	}
 	free_all(2, &user_input_ptr, &argv);
 }

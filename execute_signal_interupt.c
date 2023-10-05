@@ -5,5 +5,4 @@
 */
 void execute_signal_interupt(void)
 {
-	printf("execute_signal_interupt");
 }
