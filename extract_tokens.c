@@ -19,31 +19,36 @@ char **extract_tokens(int chars_count, char *user_input_ptr)
 		while (rows_token != NULL)
 		{
 			rows_count++;
+			columns_token = strtok(rows_token, Space_Delim);
+                        while (columns_token != NULL)
+			{
+                                      columns_count++;
+                                      columns_token = strtok(NULL, " ");
+                        }
 			rows_token = strtok(NULL, New_Line_Delim);
 		}
-		argv = malloc(sizeof(char *) * (rows_count + 1));
+		
+		argv = (char **)malloc((rows_count + 1) * sizeof(char *));
+                
 		if (argv != NULL)
 		{
+			for (i = 0; i < rows_count ; i++)
+			{
+               			argv[i] = (char *)malloc(columns_count * sizeof(char));
+			}
 			rows_token = strtok(user_input_ptr, New_Line_Delim);
 			i = 0;
-			while (rows_token != NULL)
-			{
-				row_length = str_len(rows_token);
-				argv[i] = malloc(sizeof(char) * (row_length + 1));
-				if (argv[i] != NULL)
-				{
-					str_cpy(argv[i], rows_token);
-					columns_token = strtok(argv[i], Space_Delim);
-					columns_count = str_len(columns_token);
-					temp = malloc(sizeof(char) * (columns_count + 1));
-					str_cpy(temp, columns_token);
-					temp[columns_count] = '\0';
-					argv[i] = temp;
-					rows_token = strtok(NULL, New_Line_Delim);
-					i++;
-					free_all(1, &temp);
-				}
-			}
+    while (rowToken != NULL) {
+        colToken = strtok(rowToken, " ");
+        j = 0;
+        while (colToken != NULL) {
+            array[i][j] = atoi(colToken);
+            j++;
+            colToken = strtok(NULL, " ");
+        }
+        i++;
+        rowToken = strtok(NULL, "\n");
+    }
 			argv[i] = NULL;
 		}
 	}
