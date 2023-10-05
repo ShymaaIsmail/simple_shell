@@ -1,4 +1,4 @@
-
+#include "main.h"
 
 /**
  *  process_non_interactive_script - process_non_interactive_script
@@ -9,4 +9,6 @@ void process_non_interactive_script(int ac, char **argv)
 {
 	(void) ac;
 	(void) argv;
+
+	printf("Hello from the non-interactive one\n");
 }
