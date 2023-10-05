@@ -15,8 +15,8 @@ void print_shell_error(SHELL_ERORR shell_error, int ptr_num, ...)
 {
 	if ((int) shell_error.code >= 0 && (int) shell_error.code < MAX_CODE)
 	{
-		char *original_message = malloc(500 * sizeof(char *));
-		char *error_message = malloc(500 * sizeof(char *));
+		char *original_message = malloc(500 * sizeof(char));
+		char *error_message = malloc(500 * sizeof(char));
 		int char_index = 0, length = 0;
 		va_list ptr;
 		char *ptr_to_replace;
