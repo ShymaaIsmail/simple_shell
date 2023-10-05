@@ -9,7 +9,7 @@
 #include "string.h"
 
 void free_all(int ptr_num, ...);
-int check_mode();
+int check_mode(void);
 void display_user_prompt(int ac, char **argv);
-void process_script(int ac, char **argv);
+void process_non_interactive_script(int ac, char **argv);
 #endif

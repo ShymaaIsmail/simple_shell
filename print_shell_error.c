@@ -2,7 +2,7 @@
 #include "main.h"
 
 const SHELL_ERORR shell_errors[] = {
-	{NOT_FOUND_COMMAND, "%s command not found  %s"}
+	{NOT_FOUND_COMMAND, "%s command not found  %s\n"}
 };
 
 /**
@@ -15,8 +15,8 @@ void print_shell_error(SHELL_ERORR shell_error, int ptr_num, ...)
 {
 	if ((int) shell_error.code >= 0 && (int) shell_error.code < MAX_CODE)
 	{
-		char *original_message = malloc(500 * sizeof(char));
-		char *error_message = malloc(500 * sizeof(char));
+		char *original_message = malloc(150);
+		char *error_message =  malloc(150);
 		int char_index = 0, length = 0;
 		va_list ptr;
 		char *ptr_to_replace;
@@ -45,13 +45,11 @@ void print_shell_error(SHELL_ERORR shell_error, int ptr_num, ...)
 			}
 			va_end(ptr);
 			write(STDERR_FILENO, error_message, str_len(error_message));
+			free_all(2, &original_message, &error_message);
 		}
 		}
 		else
-		{
 			write(STDERR_FILENO, shell_errors[shell_error.code].message,
 					str_len(shell_errors[shell_error.code].message));
 		}
-		free_all(2, original_message, error_message);
-	}
 }

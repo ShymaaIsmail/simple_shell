@@ -2,14 +2,15 @@
 
 /**
 * display_user_prompt - display_user_prompt
-*
-*
+* @ac: nummber of args
+* @argv: array of pointers with args
+* Return: void
 */
 void display_user_prompt(int ac, char **argv)
 {
 char *prompt = "(Eshell) $ ";
 char *lineptr, *lineptr_copy = NULL, *token;
-const char *delim = " \n";
+char *delim = " ";
 size_t n = 0, num_tokens = 0, i = 0;
 ssize_t nchars_read;
 SHELL_ERORR not_found_command = {NOT_FOUND_COMMAND, NULL};
@@ -23,14 +24,12 @@ nchars_read = getline(&lineptr, &n, stdin);
 if (nchars_read == -1)
 {
 printf("Exiting shell....\n");
-return (-1);
 }
 printf("you typed %s\n", lineptr);
 lineptr_copy = malloc(sizeof(char) * nchars_read);
 if (lineptr_copy == NULL)
 {
 perror("tsh: memory allocation error");
-return (-1);
 }
 strcpy(lineptr_copy, lineptr);
 /* tokenizatin part*/
@@ -47,7 +46,8 @@ argv = malloc(sizeof(char *) * num_tokens);
   /* Store each token in the argv array */
 token = strtok(lineptr_copy, delim);
 
-for (i = 0; token != NULL; i++){
+for (i = 0; token != NULL; i++)
+{
 argv[i] = malloc(sizeof(char) * strlen(token));
 strcpy(argv[i], token);
 
@@ -55,7 +55,9 @@ token = strtok(NULL, delim);
 }
 argv[i] = NULL;
 
+/* test print error*/
 print_shell_error(not_found_command, 2, "loy", "biin");
+print_shell_error(not_found_command,0);
 }
-free_all(3, lineptr, lineptr_copy, argv);
+free_all(3, &lineptr, &lineptr_copy, &argv);
 }
