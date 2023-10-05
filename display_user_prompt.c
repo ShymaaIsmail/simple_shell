@@ -8,22 +8,26 @@
 */
 void display_user_prompt(int ac, char **argv)
 {
+      ssize_t chars_count;
       char *lineptr, *lineptr_copy = NULL, *token;
       size_t n = 0, num_tokens = 0, i = 0;
-      ssize_t chars_count;
       SHELL_ERORR not_found_command = {NOT_FOUND_COMMAND, NULL};
 
       (void) ac;
       while (1)
       {
         write(STDOUT_FILENO, Prompt_Title, 2);
-        nchars_read = getline(&lineptr, &n, stdin);
-
-        if (nchars_read == EOF)
+        chars_count = getline(&lineptr, &n, stdin);
+        if (chars_count == EOF)
         {
-        printf("Exiting shell....\n");
+          execute_eof();
         }
-        lineptr_copy = malloc(sizeof(char) * nchars_read);
+        else if (chars_count == SIGINT)
+        {
+          execute_signal_interupt();
+        }
+        
+        lineptr_copy = malloc(sizeof(char) * chars_count);
         if (lineptr_copy == NULL)
         {
         perror("tsh: memory allocation error");
