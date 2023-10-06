@@ -9,8 +9,11 @@ void display_user_prompt(char **argv)
 {
 	ssize_t chars_count;
 	char *user_input_ptr;
+
 	size_t n = 0;
 	char *program_name = argv[0];
+
+	char ***commands;
 
 	while (1)
 	{
@@ -24,10 +27,10 @@ void display_user_prompt(char **argv)
 		{
 			execute_signal_interupt();
 		}
-		argv = extract_tokens(chars_count, user_input_ptr);
-		if (argv != NULL)
+		commands = extract_tokens(chars_count, user_input_ptr);
+		if (commands != NULL)
 		{
-			execute_command(program_name, argv);
+			execute_command(program_name, commands);
 		}
 	}
 	free_all(2, &user_input_ptr, &argv);
