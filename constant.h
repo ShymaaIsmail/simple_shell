@@ -3,7 +3,6 @@
 
 /* shell program special character*/
 #define Prompt_Title  "$"
-#define Command_DeLim  "\n"
 #define Space_Delim  " "
 #define New_Line_Delim  "\n"
 
@@ -16,4 +15,13 @@
 /* strings */
 #define EXIT "exit"
 #define ENV "env"
+
+/* SHELL MODES*/
+#define INTERACTIVE_INPUT 0
+#define PIPE_INPUT 1
+#define FILE_INPUT 2
+
+
+/* NON-INTERACTIVE MODE ASSUMPTIONS*/
+#define BUFFER_SIZE 1024
 #endif
