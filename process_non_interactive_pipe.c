@@ -20,9 +20,9 @@ void process_non_interactive_pipe(char *program_name)
 			buffer[input_data_size] = '\0';
 			str_cpy(input, buffer);
 			commands = extract_tokens(input_data_size, input);
-			if (commands != NULL)
+			if (commands != NULL && program_name != NULL)
 			{
-				execute_command(program_name, commands);
+				/*execute_command(program_name, commands);*/
 			}
 		}
 	}
