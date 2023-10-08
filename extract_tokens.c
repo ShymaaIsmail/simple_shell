@@ -51,6 +51,51 @@ size_t get_columns_count_by_row_index(char *input, size_t row_index)
 	}
 	return (column_count);
 }
+
+/**
+ * get_substring_by_indexes - get_substring_by_indexes
+ * @input: input
+ * @row_index: row_index
+ * @column_index: column_index
+ * Return: string
+*/
+char *get_substring_by_indexes(char *input, size_t row_index,
+								size_t column_index)
+{
+	size_t current_row = 0, current_column = 0;
+	char *substring = NULL;
+	char *row_token, *row_copy;
+	char *column_token;
+	char *copy_input = str_dup(input);
+
+	row_token = strtok(copy_input, New_Line_Delim);
+	while (row_token != NULL && current_row < row_index)
+	{
+		row_token = strtok(NULL, New_Line_Delim);
+		current_row++;
+	}
+	if (row_token != NULL)
+	{
+		row_copy = strdup(row_token);
+		column_token = strtok(row_copy, Space_Delim);
+		current_column = 0;
+		while (column_token != NULL && current_column < column_index)
+		{
+			column_token = strtok(NULL, Space_Delim);
+			current_column++;
+		}
+		if (column_token != NULL)
+		{
+			substring = strdup(column_token);
+			free(row_copy);
+			free(copy_input);
+			return (substring);
+		}
+		free(row_copy);
+	}
+	free(copy_input);
+	return (NULL);
+}
 /**
 * extract_tokens - extract_tokens
 * @chars_count: count of chars entered by a user
@@ -61,8 +106,8 @@ size_t get_columns_count_by_row_index(char *input, size_t row_index)
 char ***extract_tokens(int chars_count, char *user_input_ptr)
 {
 	char *user_input_ptr_copy = malloc(sizeof(char) * (chars_count + 1));
-	char  ***argv = NULL, *rows_token, *columns_token;
-	size_t rows_count = 0, columns_count = 0, row_index, i, j = 0;
+	char  ***argv = NULL;
+	size_t rows_count = 0, columns_count = 0, row_index, column_index = 0;
 
 	if (user_input_ptr_copy != NULL)
 	{
@@ -76,23 +121,12 @@ char ***extract_tokens(int chars_count, char *user_input_ptr)
 				columns_count = get_columns_count_by_row_index
 									(user_input_ptr_copy, row_index);
 				argv[row_index] = malloc(columns_count * sizeof(char *));
-			}
-			rows_token = strtok(user_input_ptr_copy, New_Line_Delim);
-			i = 0;
-			while (rows_token != NULL)
-			{
-				columns_token = strtok(rows_token, Space_Delim);
-				j = 0;
-				while (columns_token != NULL)
+				for (column_index = 0; column_index < columns_count; column_index++)
 				{
-					argv[i][j] = malloc((strlen(columns_token) + 1) * sizeof(char *));
-					str_cpy(argv[i][j], columns_token);
-					j++;
-					columns_token = strtok(NULL, Space_Delim);
+					argv[row_index][column_index] = get_substring_by_indexes
+													(user_input_ptr_copy, row_index, column_index);
 				}
-				argv[i][j] = NULL;
-				i++;
-				rows_token = strtok(NULL, New_Line_Delim);
+				 argv[row_index][columns_count] = NULL;
 			}
 			argv[rows_count] = NULL;
 		}

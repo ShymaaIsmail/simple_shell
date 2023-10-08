@@ -22,7 +22,7 @@ void process_non_interactive_pipe(char *program_name)
 			commands = extract_tokens(input_data_size, input);
 			if (commands != NULL && program_name != NULL)
 			{
-				/*execute_command(program_name, commands);*/
+				execute_command(program_name, commands);
 			}
 		}
 	}
