@@ -42,7 +42,6 @@ void process_command(char **argv)
 void execute_command(char *program_name, char ***argv)
 {
 		int line_index;
-
 		char *command;
 
 		if (argv != NULL && program_name != NULL)

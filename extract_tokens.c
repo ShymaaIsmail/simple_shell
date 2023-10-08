@@ -2,6 +2,36 @@
 
 
 /**
+ * remove_leading_traling_space - remove_leading_traling_space
+ * @str: str
+ * Return: clean string
+*/
+void remove_leading_traling_space(char *str)
+{
+	int i, j;
+	int n = str_len(str);
+
+	i = 0;
+	while (str[i] == ' ')
+	{
+		i++;
+	}
+	if (i > 0)
+	{
+		for (j = 0; j < n - i + 1; j++)
+		{
+			str[j] = str[j + i];
+		}
+	}
+	n = strlen(str);
+	i = n - 1;
+	while (str[i] == ' ')
+	{
+		str[i] = '\0';
+		i--;
+	}
+}
+/**
  * get_rows_count - get_rows_count
  * @input: input
  * Return: int
@@ -12,11 +42,15 @@ size_t get_rows_count(char *input)
 	char *rows_token;
 	char *temp_input = str_dup(input);
 
+	remove_leading_traling_space(temp_input);
+	if (temp_input != NULL && str_len(temp_input) > 0)
+	{
 	rows_token = strtok(temp_input, New_Line_Delim);
 	while (rows_token != NULL)
 	{
 		rows_count++;
 		rows_token = strtok(NULL, New_Line_Delim);
+	}
 	}
 	return (rows_count);
 }
@@ -113,6 +147,8 @@ char ***extract_tokens(int chars_count, char *user_input_ptr)
 	{
 		user_input_ptr_copy = str_dup(user_input_ptr);
 		rows_count = get_rows_count(user_input_ptr_copy);
+		if (rows_count > 0)
+		{
 		argv = (char ***)malloc((rows_count + 1) * sizeof(char *));
 		if (argv != NULL)
 		{
@@ -130,6 +166,7 @@ char ***extract_tokens(int chars_count, char *user_input_ptr)
 			}
 			argv[rows_count] = NULL;
 		}
+	}
 	}
 	return (argv);
 }
