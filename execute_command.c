@@ -63,7 +63,6 @@ void execute_command(char *program_name, char ***argv)
 				}
 				else
 				{
-					printf("%s", *argv[line_index]);
 					process_command(argv[line_index]);
 				}
 			}

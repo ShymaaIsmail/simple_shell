@@ -6,7 +6,5 @@
 */
 void process_non_interactive_file(char **argv)
 {
-	printf("%s\n", argv[0]);
 	printf(" file name is %s\n", argv[1]);
-
 }
