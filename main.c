@@ -8,15 +8,20 @@
 */
 int main(int ac, char **argv)
 {
-	int is_interactive = check_mode();
+	int exit_code = EXIT_SUCCESS;
+	int shell_mode = check_mode(ac);
 
-	if (is_interactive && ac > 0)
+	if (shell_mode == INTERACTIVE_INPUT)
 	{
 		display_user_prompt(argv);
 	}
-	else
+	else if (shell_mode == FILE_INPUT)
 	{
-		process_non_interactive_script(ac, argv);
+		process_non_interactive_file(argv);
 	}
-	return (0);
+	else if (shell_mode == PIPE_INPUT)
+	{
+		process_non_interactive_pipe(argv[0]);
+	}
+	return (exit_code);
 }
