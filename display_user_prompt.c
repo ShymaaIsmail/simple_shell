@@ -3,9 +3,10 @@
 /**
 * display_user_prompt - display_user_prompt
 * @argv: array of pointers with args
+* @exit_code: exit_code
 * Return: void
 */
-void display_user_prompt(char **argv)
+void display_user_prompt(char **argv, int *exit_code)
 {
 	ssize_t chars_count;
 	char *user_input_ptr;
@@ -30,7 +31,7 @@ void display_user_prompt(char **argv)
 		commands = extract_tokens(chars_count, user_input_ptr);
 		if (commands != NULL)
 		{
-			execute_command(program_name, commands);
+			execute_command(program_name, commands, exit_code);
 		}
 	}
 	free_all(2, &user_input_ptr, &argv);
