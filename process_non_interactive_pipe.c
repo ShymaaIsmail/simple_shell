@@ -3,8 +3,9 @@
 /**
 * process_non_interactive_pipe - process_non_interactive_pipe
 * @program_name: program_name
+* @exit_code: exit_code
 */
-void process_non_interactive_pipe(char *program_name)
+void process_non_interactive_pipe(char *program_name, int *exit_code)
 {
 	char *input;
 	char buffer[(BUFFER_SIZE * 2) + 1];
@@ -22,7 +23,7 @@ void process_non_interactive_pipe(char *program_name)
 			commands = extract_tokens(input_data_size, input);
 			if (commands != NULL && program_name != NULL)
 			{
-				execute_command(program_name, commands);
+				execute_command(program_name, commands, exit_code);
 			}
 		}
 	}

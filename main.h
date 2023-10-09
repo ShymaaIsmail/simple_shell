@@ -12,17 +12,17 @@
 #include "string.h"
 #include "constant.h"
 
-
+void free_matrix(char **mat);
 void free_all(int ptr_num, ...);
 int check_mode(int ac);
-void display_user_prompt(char **argv);
-void process_non_interactive_file(char **argv);
-void process_non_interactive_pipe(char *program_name);
-void execute_command(char *program_name, char ***argv);
+void display_user_prompt(char **argv, int *exit_code);
+void process_non_interactive_file(char **argv, int *exit_code);
+void process_non_interactive_pipe(char *program_name, int *exit_code);
+void execute_command(char *program_name, char ***argv, int *exit_code);
 char ***extract_tokens(int chars_count, char *user_input_ptr);
 void execute_eof(void);
 void execute_signal_interupt(void);
 char *validate_command(char *command);
-void execute_exit(void);
+int execute_exit(char **command);
 void execute_env(void);
 #endif

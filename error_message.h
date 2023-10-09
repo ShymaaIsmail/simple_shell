@@ -16,6 +16,7 @@ typedef struct SHELL_ERORR
 	enum
 	{
 		NOT_FOUND_COMMAND,
+		ILLEGAL_PARAMETER,
 		MAX_CODE
 	} code;
 	char *message;

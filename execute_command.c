@@ -3,8 +3,9 @@
 /**
 * process_command - execute_command
 * @argv: 2 d array for user input
+* @exit_code: exit_code
 */
-void process_command(char **argv)
+void process_command(char **argv, int *exit_code)
 {
 	char *command;
 
@@ -21,40 +22,52 @@ void process_command(char **argv)
 		if (child_pid == -1)
 		{
 			perror("fork failed");
+			exit(EXIT_ERROR);
 		}
 		else if (child_pid == 0)
 		{
-			execvp(command, argv);
-			perror("execvp");
-			exit(EXIT_FAILURE);
+			status = execve(command, argv, NULL);
+			perror("ff " + status);
+			exit(EXIT_ERROR);
 		}
 		else
 		{
 			waitpid(child_pid, &status, 0);
+			if (WIFEXITED(status))
+			{
+			*exit_code  = WEXITSTATUS(status);
+			if (*exit_code > 0)
+			{
+				exit(*exit_code);
+			}
+			}
 		}
 	}
 }
 /**
 * execute_command - execute_command
 * @program_name: program name
-* @argv: 2 d array for user input
+* @argv: 2d array for user input
+* @exit_code: exit code
 */
-void execute_command(char *program_name, char ***argv)
+void execute_command(char *program_name, char ***argv, int *exit_code)
 {
 		int line_index;
+
 		char *command;
 
 		if (argv != NULL && program_name != NULL)
 		{
 			for (line_index = 0; argv[line_index] != NULL; line_index++)
 			{
+
 				command = argv[line_index][0];
 				if (str_cmp(command, EXIT) == 0)
 				{
 					/**
 					 * to do zainab
 					*/
-					execute_exit();
+					execute_exit(argv[line_index]);
 				}
 				else if (str_cmp(command, ENV) == 0)
 				{
@@ -62,7 +75,7 @@ void execute_command(char *program_name, char ***argv)
 				}
 				else
 				{
-					process_command(argv[line_index]);
+					process_command(argv[line_index], exit_code);
 				}
 			}
 		}
