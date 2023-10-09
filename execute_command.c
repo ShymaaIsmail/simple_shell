@@ -37,7 +37,7 @@ void process_command(char **argv)
 /**
 * execute_command - execute_command
 * @program_name: program name
-* @argv: 2 d array for user input
+* @argv: 2d array for user input
 */
 void execute_command(char *program_name, char ***argv)
 {
@@ -48,13 +48,14 @@ void execute_command(char *program_name, char ***argv)
 		{
 			for (line_index = 0; argv[line_index] != NULL; line_index++)
 			{
+
 				command = argv[line_index][0];
 				if (str_cmp(command, EXIT) == 0)
 				{
 					/**
 					 * to do zainab
 					*/
-					execute_exit();
+					execute_exit(argv[line_index]);
 				}
 				else if (str_cmp(command, ENV) == 0)
 				{

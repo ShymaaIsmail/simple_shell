@@ -14,6 +14,7 @@ void free_matrix(char **mat)
 	while (mat[idx])
 	{
 		free(mat[idx]);
+		idx++;
 	}
 	free(mat);
 }

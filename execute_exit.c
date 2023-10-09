@@ -10,14 +10,14 @@ void execute_exit(char **command)
 	int param = 1;
 	int r;
 
-	if (command[1])
+	if (command[param])
 	{
 		r = stoi(command[1]);
-		if (r <= -1)
+		if (r < 0)
 			r = 2;
 		free_matrix(command);
 		exit(r);
 	}
 	free_matrix(command);
-	exit(0);
+	exit(EXIT_SUCCESS);
 }
