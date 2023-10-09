@@ -12,7 +12,7 @@
 #include "string.h"
 #include "constant.h"
 
-
+void free_matrix(char **mat);
 void free_all(int ptr_num, ...);
 int check_mode(int ac);
 void display_user_prompt(char **argv);
