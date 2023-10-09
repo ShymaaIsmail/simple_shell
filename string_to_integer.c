@@ -15,7 +15,7 @@ int stoi(char *s)
 
 	if (s[0] == '-')
 	{
-		ret = -1;
+		return (-1);
 	}
 	else
 	{

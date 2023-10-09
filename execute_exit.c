@@ -14,7 +14,7 @@ void execute_exit(char **command)
 	if (command[param])
 	{
 		r = stoi(command[param]);
-		if (r == -1 || r == 45)
+		if (r == -1)
 		{
 			r = 2;
 			print_shell_error(illegal_parameter_error, 2, "exit", command[param]);
