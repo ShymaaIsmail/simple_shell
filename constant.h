@@ -2,7 +2,7 @@
 #define _constant_
 
 /* shell program special character*/
-#define Prompt_Title  "$"
+#define Prompt_Title  "$ "
 #define Space_Delim  " "
 #define New_Line_Delim  "\n"
 
