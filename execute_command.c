@@ -8,8 +8,10 @@
 void process_command(char **argv, int *exit_code)
 {
 	char *command;
+
 	pid_t child_pid;
 	int status;
+
 	/**
 	 * to do zainab
 	*/
@@ -24,14 +26,21 @@ void process_command(char **argv, int *exit_code)
 		}
 		else if (child_pid == 0)
 		{
-			execve(command, argv, NULL);
-			perror("execve");
+			status = execve(command, argv, NULL);
+			perror("ff " + status);
 			exit(EXIT_ERROR);
 		}
 		else
 		{
-			waitpid(child_pid, &status, WUNTRACED);
+			waitpid(child_pid, &status, 0);
+			if (WIFEXITED(status))
+			{
 			*exit_code  = WEXITSTATUS(status);
+			if (*exit_code > 0)
+			{
+				exit(*exit_code);
+			}
+			}
 		}
 	}
 }
@@ -44,6 +53,7 @@ void process_command(char **argv, int *exit_code)
 void execute_command(char *program_name, char ***argv, int *exit_code)
 {
 		int line_index;
+
 		char *command;
 
 		if (argv != NULL && program_name != NULL)
