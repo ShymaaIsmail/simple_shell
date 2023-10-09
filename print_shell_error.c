@@ -2,7 +2,8 @@
 #include "main.h"
 
 const SHELL_ERORR shell_errors[] = {
-	{NOT_FOUND_COMMAND, "%s command not found  %s\n"}
+	{NOT_FOUND_COMMAND, "%s command not found  %s\n"},
+	{ILLEGAL_PARAMETER, "%s: Illegal number: %s\n"}
 };
 
 /**

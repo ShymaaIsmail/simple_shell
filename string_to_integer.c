@@ -7,28 +7,32 @@
  * @str: string that will be converted
  * Return: integer converted
  */
-int stoi(char *str)
+int stoi(char *s)
 {
-	int value = 0;
-	int s = 1;
+	int val = 0;
+	int ret = 0;
+	int i = 0;
 
-	if (*str == '-')
+	if (s[0] == '-')
 	{
-		s *= -1;
-		str++;
+		ret = -1;
 	}
-	while (*str != '\0')
+	else
 	{
-		if ((*str >= '0') && (*str <= '9'))
+		for (i = 0; s[i] != '\0'; i++)
 		{
-			value *= 10;
-			value += (*str - '0');
+			if ((s[i] >= '0') && (s[i] <= '9'))
+			{
+				val *= 10;
+				val += (s[i] - '0');
+				ret = val;
+			}
+			else
+			{
+				ret = -1;
+				break;
+			}
 		}
-		else
-		{
-			break;
-		}
-		++str;
 	}
-	return (value * s);
+	return (ret);
 }
