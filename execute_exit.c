@@ -5,7 +5,7 @@
  * @command: the command that will be excuted
  * Return: (void) no return value
 */
-void execute_exit(char **command)
+int execute_exit(char **command)
 {
 	int param = 1;
 	int r;
@@ -18,6 +18,7 @@ void execute_exit(char **command)
 		{
 			r = 2;
 			print_shell_error(parameter_illegal, 2, "exit", command[param]);
+			return (r);
 		}
 		free_matrix(command);
 		exit(r);
