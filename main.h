@@ -12,6 +12,8 @@
 #include "string.h"
 #include "constant.h"
 
+extern char **environ;
+
 void free_matrix(char **mat);
 void free_all(int ptr_num, ...);
 int check_mode(int ac);
@@ -24,5 +26,5 @@ void execute_eof(void);
 void execute_signal_interupt(void);
 char *validate_command(char *command);
 int execute_exit(char **command);
-void execute_env(void);
+void execute_env(int *exit_code);
 #endif
