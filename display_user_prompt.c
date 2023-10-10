@@ -28,7 +28,7 @@ void display_user_prompt(char **argv, int *exit_code)
 		{
 			execute_signal_interupt();
 		}
-		commands = extract_tokens(chars_count, user_input_ptr);
+		commands = extract_tokens(user_input_ptr);
 		if (commands != NULL)
 		{
 			execute_command(program_name, commands, exit_code);

@@ -132,12 +132,11 @@ char *get_substring_by_indexes(char *input, size_t row_index,
 }
 /**
 * extract_tokens - extract_tokens
-* @chars_count: count of chars entered by a user
 * @user_input_ptr: pointer to content entered by a user
 * Return: 2 dimensional array of all commands lines
 * and arguments written by the user
 */
-char ***extract_tokens(int chars_count, char *user_input_ptr)
+char ***extract_tokens(char *user_input_ptr)
 {
 	char *user_input_ptr_copy = str_dup(user_input_ptr);
 	char  ***argv = NULL;

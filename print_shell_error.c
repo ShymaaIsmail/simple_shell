@@ -16,8 +16,8 @@ void print_shell_error(enum ERROR_CODE error_code, int ptr_num, ...)
 {
 	if ((int) error_code >= 0 && (int) error_code < MAX_CODE)
 	{
-		char *original_message = malloc(150);
-		char *error_message =  malloc(150);
+		char *original_message = malloc(100);
+		char *error_message =  malloc(100);
 		int char_index = 0, length = 0;
 		va_list ptr;
 		char *ptr_to_replace;
@@ -42,7 +42,7 @@ void print_shell_error(enum ERROR_CODE error_code, int ptr_num, ...)
 						int_value = va_arg(ptr, int);
 						ptr_to_replace = str_int_cat(int_value, "");
 					}
-					error_message = str_cat(error_message, ptr_to_replace);
+					error_message = strcat(error_message, ptr_to_replace);
 					char_index += 2;
 					continue;
 				}

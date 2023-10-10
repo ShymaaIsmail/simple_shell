@@ -21,7 +21,7 @@ void display_user_prompt(char **argv, int *exit_code);
 void process_non_interactive_file(char **argv, int *exit_code);
 void process_non_interactive_pipe(char *program_name, int *exit_code);
 void execute_command(char *program_name, char ***argv, int *exit_code);
-char ***extract_tokens(int chars_count, char *user_input_ptr);
+char ***extract_tokens(char *user_input_ptr);
 void execute_eof(void);
 void execute_signal_interupt(void);
 char *validate_command(char *command);
