@@ -23,7 +23,7 @@ void remove_leading_traling_space(char *str)
 			str[j] = str[j + i];
 		}
 	}
-	n = strlen(str);
+	n = str_len(str);
 	i = n - 1;
 	while (str[i] == ' ')
 	{
@@ -132,24 +132,22 @@ char *get_substring_by_indexes(char *input, size_t row_index,
 }
 /**
 * extract_tokens - extract_tokens
-* @chars_count: count of chars entered by a user
 * @user_input_ptr: pointer to content entered by a user
 * Return: 2 dimensional array of all commands lines
 * and arguments written by the user
 */
-char ***extract_tokens(int chars_count, char *user_input_ptr)
+char ***extract_tokens(char *user_input_ptr)
 {
-	char *user_input_ptr_copy = malloc(sizeof(char) * (chars_count + 1));
+	char *user_input_ptr_copy = str_dup(user_input_ptr);
 	char  ***argv = NULL;
 	size_t rows_count = 0, columns_count = 0, row_index, column_index = 0;
 
 	if (user_input_ptr_copy != NULL)
 	{
-		user_input_ptr_copy = str_dup(user_input_ptr);
 		rows_count = get_rows_count(user_input_ptr_copy);
 		if (rows_count > 0)
 		{
-		argv = (char ***)malloc((rows_count + 1) * sizeof(char *));
+		argv = (char ***)malloc((rows_count + 1) * sizeof(char **));
 		if (argv != NULL)
 		{
 			for (row_index = 0; row_index < rows_count ; row_index++)

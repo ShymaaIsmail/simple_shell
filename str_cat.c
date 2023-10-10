@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include "main.h"
 /**
  *str_cat - concatenates two strings
  *@s1: string 1
@@ -16,7 +16,7 @@ char *str_cat(char *s1, char *s2)
 	s1 = (s1 == NULL) ? "" : s1;
 	s2 = (s2 == NULL) ? "" : s2;
 
-	str_new = (char *)malloc(sizeof(char) * (strlen(s1) + strlen(s2) + 1));
+	str_new = (char *)malloc(sizeof(char) * (str_len(s1) + str_len(s2) + 1));
 	str_new_start = str_new;
 
 	if (str_new == NULL)

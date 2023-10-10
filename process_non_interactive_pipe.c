@@ -20,7 +20,7 @@ void process_non_interactive_pipe(char *program_name, int *exit_code)
 		{
 			buffer[input_data_size] = '\0';
 			str_cpy(input, buffer);
-			commands = extract_tokens(input_data_size, input);
+			commands = extract_tokens(input);
 			if (commands != NULL && program_name != NULL)
 			{
 				execute_command(program_name, commands, exit_code);
