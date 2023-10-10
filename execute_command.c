@@ -26,7 +26,7 @@ void process_command(char **argv, int *exit_code)
 		}
 		else if (child_pid == 0)
 		{
-			status = execve(command, argv, NULL);
+			status = execve(command, argv, environ);
 			perror("ff " + status);
 			exit(EXIT_ERROR);
 		}
@@ -71,7 +71,7 @@ void execute_command(char *program_name, char ***argv, int *exit_code)
 				}
 				else if (str_cmp(command, ENV) == 0)
 				{
-					execute_env();
+					execute_env(exit_code);
 				}
 				else
 				{
@@ -79,11 +79,4 @@ void execute_command(char *program_name, char ***argv, int *exit_code)
 				}
 			}
 		}
-
-		/* just for testing print error*/
-		/**
-		 * print_shell_error(not_found_command, 2, program_name, "biin");
-		*print_shell_error(not_found_command, 0);
-		*/
-
 }
