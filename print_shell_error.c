@@ -3,39 +3,48 @@
 
 const SHELL_ERORR shell_errors[] = {
 	{NOT_FOUND_COMMAND, "%s command not found  %s\n"},
-	{ILLEGAL_PARAMETER, "%s: Illegal number: %s\n"}
+	{ILLEGAL_PARAMETER, "%s: %d: %s: Illegal number: %s\n"}
 };
 
 /**
 * print_shell_error - dynamic print for error msg based on enum code
-* @shell_error: enum for shell_error codes
+* @error_code: enum for shell_error codes
 * @ptr_num: number of passed pointers
 * Return: void
 */
-void print_shell_error(SHELL_ERORR shell_error, int ptr_num, ...)
+void print_shell_error(enum ERROR_CODE error_code, int ptr_num, ...)
 {
-	if ((int) shell_error.code >= 0 && (int) shell_error.code < MAX_CODE)
+	if ((int) error_code >= 0 && (int) error_code < MAX_CODE)
 	{
 		char *original_message = malloc(150);
 		char *error_message =  malloc(150);
 		int char_index = 0, length = 0;
 		va_list ptr;
 		char *ptr_to_replace;
+		int int_value;
 
 		if (ptr_num > 0)
 		{
 		if (original_message != NULL && error_message != NULL)
 		{
-			str_cpy(original_message, shell_errors[shell_error.code].message);
+			str_cpy(original_message, shell_errors[error_code].message);
 			va_start(ptr, ptr_num);
 			while (original_message[char_index] != '\0')
 			{
-				if (original_message[char_index] == '%' &&
-					original_message[char_index + 1] == 's')
+				if (original_message[char_index] == '%')
 				{
-					ptr_to_replace = va_arg(ptr, char *);
+					if (original_message[char_index + 1] == 's')
+					{
+						ptr_to_replace = va_arg(ptr, char *);
+					}
+					else if (original_message[char_index + 1] == 'd')
+					{
+						int_value = va_arg(ptr, int);
+						ptr_to_replace = str_int_cat(int_value, "");
+					}
 					error_message = str_cat(error_message, ptr_to_replace);
 					char_index += 2;
+					continue;
 				}
 				else
 				{
@@ -50,7 +59,7 @@ void print_shell_error(SHELL_ERORR shell_error, int ptr_num, ...)
 		}
 		}
 		else
-			write(STDERR_FILENO, shell_errors[shell_error.code].message,
-					str_len(shell_errors[shell_error.code].message));
+			write(STDERR_FILENO, shell_errors[error_code].message,
+			str_len(shell_errors[error_code].message));
 		}
 }

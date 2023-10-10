@@ -4,7 +4,7 @@
 
 /**
  * stoi - converts the string to an integer
- * @str: string that will be converted
+ * @s: string that will be converted
  * Return: integer converted
  */
 int stoi(char *s)

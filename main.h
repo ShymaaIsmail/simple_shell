@@ -25,6 +25,6 @@ char ***extract_tokens(int chars_count, char *user_input_ptr);
 void execute_eof(void);
 void execute_signal_interupt(void);
 char *validate_command(char *command);
-int execute_exit(char **command);
+int execute_exit(char **command, char *program_name, int line_number);
 void execute_env(int *exit_code);
 #endif

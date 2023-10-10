@@ -5,24 +5,35 @@
 #include <stdarg.h>
 #include <stdbool.h>
 #include <unistd.h>
+
+/**
+ * enum ERROR_CODE - ERROR_CODE
+ * @NOT_FOUND_COMMAND: NOT_FOUND_COMMAND
+ * @ILLEGAL_PARAMETER: ILLEGAL_PARAMETER
+ * @MAX_CODE: MAX_CODE
+ *
+ * Description: error codes
+*/
+typedef enum ERROR_CODE
+{
+	NOT_FOUND_COMMAND = 0,
+	ILLEGAL_PARAMETER = 1,
+	MAX_CODE
+} ERROR_CODE;
+
 /**
 * struct SHELL_ERORR - SHELL ERORR TYPES
-* @code - error code number sart from 0
+* @code: error code number sart from 0
 * @message: error message
 * Description: SHELL ERORR TYPES
 */
 typedef struct SHELL_ERORR
 {
-	enum
-	{
-		NOT_FOUND_COMMAND,
-		ILLEGAL_PARAMETER,
-		MAX_CODE
-	} code;
+	enum ERROR_CODE code;
 	char *message;
 
 } SHELL_ERORR;
 
-void print_shell_error(SHELL_ERORR shell_error, int ptr_num, ...);
+void print_shell_error(enum ERROR_CODE error_code, int ptr_num, ...);
 
 #endif
