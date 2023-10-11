@@ -23,8 +23,9 @@ void process_non_interactive_pipe(char *program_name, int *exit_code);
 void execute_command(char *program_name, char ***argv, int *exit_code);
 char ***extract_tokens(char *user_input_ptr);
 void execute_eof(void);
-void execute_signal_interupt(void);
+void execute_signal_interupt(int signal);
 char *validate_command(char *command);
-int execute_exit(char **command, char *program_name, int line_number);
+int execute_exit(char **command, char *program_name, int line_number,
+int previous_error_code);
 void execute_env(int *exit_code);
 #endif
