@@ -8,6 +8,7 @@
 #include <signal.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/stat.h>
 #include "error_message.h"
 #include "string.h"
 #include "constant.h"
@@ -27,4 +28,5 @@ void execute_signal_interupt(void);
 char *validate_command(char *command);
 int execute_exit(char **command, char *program_name, int line_number);
 void execute_env(int *exit_code);
+char *get_environment_variable(char *command);
 #endif
