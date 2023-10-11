@@ -9,11 +9,9 @@
 void display_user_prompt(char **argv, int *exit_code)
 {
 	ssize_t chars_count;
-	char *user_input_ptr;
-
+	char *user_input_ptr = NULL;
 	size_t n = 0;
 	char *program_name = argv[0];
-
 	char ***commands;
 
 	while (1)

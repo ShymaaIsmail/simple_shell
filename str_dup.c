@@ -15,7 +15,8 @@ char *str_dup(char *str)
 	}
 	else
 	{
-	char *str_new = (char *)malloc(sizeof(char) * (str_len(str) + 1));
+	size_t length = str_len(str);
+	char *str_new = (char *)malloc(sizeof(char) * (length + 1));
 
 	if (str_new == NULL)
 	{
@@ -25,12 +26,7 @@ char *str_dup(char *str)
 	{
 	char *str_new_start = str_new;
 
-	while (*str !=  '\0')
-	{
-		*str_new = *str;
-		str_new++;
-		str++;
-	}
+	memcpy(str_new, str, length);
 	*str_new = '\0';
 	return (str_new_start);
 	}

@@ -9,28 +9,33 @@
 void remove_leading_traling_space(char *str)
 {
 	int i, j;
-	int n = str_len(str);
+	int length = 0;
 
-	i = 0;
-	while (str[i] == ' ')
+	if (str != NULL)
 	{
-		i++;
-	}
-	if (i > 0)
-	{
-		for (j = 0; j < n - i + 1; j++)
+		length = str_len(str);
+		i = 0;
+		while (str[i] == ' ')
 		{
-			str[j] = str[j + i];
+			i++;
+		}
+		if (i > 0)
+		{
+			for (j = 0; j < length - i + 1; j++)
+			{
+				str[j] = str[j + i];
+			}
+		}
+		length = str_len(str);
+		i = length - 1;
+		while (str[i] == ' ')
+		{
+			str[i] = '\0';
+			i--;
 		}
 	}
-	n = str_len(str);
-	i = n - 1;
-	while (str[i] == ' ')
-	{
-		str[i] = '\0';
-		i--;
-	}
 }
+
 /**
  * get_rows_count - get_rows_count
  * @input: input
@@ -40,7 +45,7 @@ size_t get_rows_count(char *input)
 {
 	size_t rows_count = 0;
 	char *rows_token;
-	char *temp_input = str_dup(input);
+	char *temp_input = strdup(input);
 
 	remove_leading_traling_space(temp_input);
 	if (temp_input != NULL && str_len(temp_input) > 0)
@@ -52,6 +57,7 @@ size_t get_rows_count(char *input)
 		rows_token = strtok(NULL, New_Line_Delim);
 	}
 	}
+	free(temp_input);
 	return (rows_count);
 }
 
@@ -66,7 +72,7 @@ size_t get_columns_count_by_row_index(char *input, size_t row_index)
 	size_t column_count = 0;
 	char *token;
 	size_t current_row = 0;
-	char *copy_input = str_dup(input);
+	char *copy_input = strdup(input);
 
 	token = strtok(copy_input, New_Line_Delim);
 	while (token != NULL && current_row < row_index)
@@ -83,6 +89,7 @@ size_t get_columns_count_by_row_index(char *input, size_t row_index)
 			token = strtok(NULL, Space_Delim);
 		}
 	}
+	free(copy_input);
 	return (column_count);
 }
 
@@ -100,7 +107,7 @@ char *get_substring_by_indexes(char *input, size_t row_index,
 	char *substring = NULL;
 	char *row_token, *row_copy;
 	char *column_token;
-	char *copy_input = str_dup(input);
+	char *copy_input = strdup(input);
 
 	row_token = strtok(copy_input, New_Line_Delim);
 	while (row_token != NULL && current_row < row_index)
@@ -121,15 +128,15 @@ char *get_substring_by_indexes(char *input, size_t row_index,
 		if (column_token != NULL)
 		{
 			substring = strdup(column_token);
-			free(row_copy);
-			free(copy_input);
-			return (substring);
 		}
 		free(row_copy);
 	}
-	free(copy_input);
-	return (NULL);
+
+	if (copy_input != NULL)
+		free(copy_input);
+	return (substring);
 }
+
 /**
 * extract_tokens - extract_tokens
 * @user_input_ptr: pointer to content entered by a user
@@ -138,9 +145,9 @@ char *get_substring_by_indexes(char *input, size_t row_index,
 */
 char ***extract_tokens(char *user_input_ptr)
 {
-	char *user_input_ptr_copy = str_dup(user_input_ptr);
+	char *user_input_ptr_copy = strdup(user_input_ptr);
 	char  ***argv = NULL;
-	size_t rows_count = 0, columns_count = 0, row_index, column_index = 0;
+	size_t rows_count = 0, columns_count = 0, row_index, column_index = 0, i = 0;
 
 	if (user_input_ptr_copy != NULL)
 	{
@@ -154,17 +161,34 @@ char ***extract_tokens(char *user_input_ptr)
 			{
 				columns_count = get_columns_count_by_row_index
 									(user_input_ptr_copy, row_index);
-				argv[row_index] = malloc(columns_count * sizeof(char *));
-				for (column_index = 0; column_index < columns_count; column_index++)
+				argv[row_index] = malloc(((columns_count + 1) * sizeof(char *)));
+				if (argv[row_index] != NULL)
 				{
-					argv[row_index][column_index] = get_substring_by_indexes
-													(user_input_ptr_copy, row_index, column_index);
+					for (column_index = 0; column_index < columns_count; column_index++)
+					{
+						argv[row_index][column_index] = get_substring_by_indexes
+														(user_input_ptr_copy, row_index, column_index);
+					}
+					argv[row_index][columns_count] = NULL;
 				}
-				 argv[row_index][columns_count] = NULL;
+				else
+				{
+					for (i = 0; i < row_index; i++)
+					{
+						free(argv[i]);
+					}
+					free(argv);
+					argv = NULL;
+					break;
+				}
 			}
-			argv[rows_count] = NULL;
+			if (argv != NULL)
+			{
+				argv[rows_count] = NULL;
+			}
 		}
 	}
+	free(user_input_ptr_copy);
 	}
 	return (argv);
 }

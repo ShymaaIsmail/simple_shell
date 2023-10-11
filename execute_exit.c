@@ -29,11 +29,11 @@ int execute_exit(char **command, char *program_name, int line_number,
 		exit(r);
 	}
 	free_matrix(command);
-	if (previous_error_code == 0)
+	if (previous_error_code == 0 || (isatty(STDIN_FILENO)
+			&& previous_error_code > 0))
 	{
 		exit(EXIT_SUCCESS);
 	}
-	else
 	{
 		return (previous_error_code);
 	}
