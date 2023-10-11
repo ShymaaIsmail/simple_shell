@@ -5,9 +5,11 @@
  * @command: the command that will be excuted
  * @program_name: program_name
  * @line_number: line_number
+ * @previous_error_code: previous_error_code
  * Return: (void) no return value
 */
-int execute_exit(char **command, char *program_name, int line_number)
+int execute_exit(char **command, char *program_name, int line_number,
+				int previous_error_code)
 {
 	int first_arg = 1;
 	int command_index = 0;
@@ -27,5 +29,12 @@ int execute_exit(char **command, char *program_name, int line_number)
 		exit(r);
 	}
 	free_matrix(command);
-	exit(EXIT_SUCCESS);
+	if (previous_error_code == 0)
+	{
+		exit(EXIT_SUCCESS);
+	}
+	else
+	{
+		return (previous_error_code);
+	}
 }

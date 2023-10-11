@@ -79,7 +79,7 @@ void execute_command(char *program_name, char ***argv, int *exit_code)
 				if (str_cmp(command, EXIT) == 0)
 				{
 					*exit_code = execute_exit(argv[line_index], program_name,
-												get_line_number(line_index));
+												get_line_number(line_index), *exit_code);
 				}
 				else if (str_cmp(command, ENV) == 0)
 				{
