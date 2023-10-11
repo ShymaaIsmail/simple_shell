@@ -5,5 +5,5 @@
 void execute_eof(void)
 {
 	printf("Exiting shell....\n");
-	exit(EXIT_ERROR);
+	exit(EXIT_SUCCESS);
 }
