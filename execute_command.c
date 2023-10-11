@@ -12,47 +12,52 @@ int get_line_number(int line_index)
 /**
 * process_command - execute_command
 * @argv: 2 d array for user input
-* @exit_code: exit_code
+* Return: int
 */
-void process_command(char **argv, int *exit_code)
+int process_command(char **argv)
 {
+	int exit_code;
 	char *command;
-
 	pid_t child_pid;
 	int status;
 
-	/**
-	 * to do zainab
-	*/
 	command = validate_command(argv[0]);
 	if (command)
 	{
 		child_pid = fork();
 		if (child_pid == -1)
 		{
-			perror("fork failed");
 			exit(EXIT_ERROR);
 		}
 		else if (child_pid == 0)
 		{
-			status = execve(command, argv, environ);
-			perror("ff " + status);
-			exit(EXIT_ERROR);
-		}
+			exit_code = execve(command, argv, environ);
+			if (exit_code == -1)
+			{
+				perror("execve");
+				exit(exit_code);
+			}
+			}
 		else
 		{
 			waitpid(child_pid, &status, 0);
 			if (WIFEXITED(status))
 			{
-			*exit_code  = WEXITSTATUS(status);
-			if (*exit_code > 0)
+			exit_code = WEXITSTATUS(status);
+			if (exit_code != 0)
 			{
-				exit(*exit_code);
+				exit_code =  2;
 			}
+			}
+			else
+			{
+				exit_code = 3;
 			}
 		}
 	}
+	return (exit_code);
 }
+
 /**
 * execute_command - execute_command
 * @program_name: program name
@@ -82,7 +87,7 @@ void execute_command(char *program_name, char ***argv, int *exit_code)
 				}
 				else
 				{
-					process_command(argv[line_index], exit_code);
+					*exit_code = process_command(argv[line_index]);
 				}
 			}
 		}
