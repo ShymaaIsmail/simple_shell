@@ -6,10 +6,12 @@
  * @program_name: program_name
  * @line_number: line_number
  * @previous_error_code: previous_error_code
+ * @argv: argv
+ * @input: input
  * Return: (void) no return value
 */
-int execute_exit(char **command, char *program_name, int line_number,
-				int previous_error_code)
+int execute_exit(char *input, char ***argv, char **command, char *program_name,
+					int line_number, int previous_error_code)
 {
 	int first_arg = 1;
 	int command_index = 0;
@@ -25,13 +27,15 @@ int execute_exit(char **command, char *program_name, int line_number,
 								line_number, command[command_index], command[first_arg]);
 			return (r);
 		}
-		free_matrix(command);
+		free(input);
+		free_tokens(argv);
 		exit(r);
 	}
 	if (previous_error_code == 0 || (isatty(STDIN_FILENO)
 			&& previous_error_code > 0))
 	{
-		free_matrix(command);
+		free(input);
+		free_tokens(argv);
 		exit(EXIT_SUCCESS);
 	}
 	{

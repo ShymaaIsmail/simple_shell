@@ -63,8 +63,10 @@ int process_command(char **argv)
 * @program_name: program name
 * @argv: 2d array for user input
 * @exit_code: exit code
+* @input: input
 */
-void execute_command(char *program_name, char ***argv, int *exit_code)
+void execute_command(char *input, char *program_name, char ***argv,
+					int *exit_code)
 {
 		int line_index;
 
@@ -78,7 +80,7 @@ void execute_command(char *program_name, char ***argv, int *exit_code)
 				command = argv[line_index][0];
 				if (str_cmp(command, EXIT) == 0)
 				{
-					*exit_code = execute_exit(argv[line_index], program_name,
+					*exit_code = execute_exit(input, argv, argv[line_index], program_name,
 												get_line_number(line_index), *exit_code);
 				}
 				else if (str_cmp(command, ENV) == 0)
