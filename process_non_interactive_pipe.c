@@ -25,6 +25,7 @@ void process_non_interactive_pipe(char *program_name, int *exit_code)
 			{
 				execute_command(program_name, commands, exit_code);
 			}
+			free(input);
 		}
 	}
 }

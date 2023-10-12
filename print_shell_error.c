@@ -55,8 +55,8 @@ void print_shell_error(enum ERROR_CODE error_code, int ptr_num, ...)
 			}
 			va_end(ptr);
 			write(STDERR_FILENO, error_message, str_len(error_message));
-			free_all(2, &original_message, &error_message);
 		}
+		free_all(2, &original_message, &error_message);
 		}
 		else
 			write(STDERR_FILENO, shell_errors[error_code].message,
