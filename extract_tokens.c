@@ -156,7 +156,7 @@ char ***extract_tokens(char *user_input_ptr)
 {
 	char *user_input_ptr_copy = strdup(user_input_ptr);
 	char  ***argv = NULL;
-	size_t rows_count = 0, columns_count = 0, row_index, column_index = 0, i = 0;
+	size_t rows_count = 0, columns_count = 0, row_index, column_index = 0;
 
 	if (user_input_ptr_copy != NULL)
 	{
@@ -182,11 +182,7 @@ char ***extract_tokens(char *user_input_ptr)
 				}
 				else
 				{
-					for (i = 0; i < row_index; i++)
-					{
-						free(argv[i]);
-					}
-					free(argv);
+					free_tokens(argv);
 					argv = NULL;
 					break;
 				}

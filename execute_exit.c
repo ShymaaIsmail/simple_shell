@@ -38,6 +38,7 @@ int execute_exit(char *input, char ***argv, char **command, char *program_name,
 		free_tokens(argv);
 		exit(EXIT_SUCCESS);
 	}
+	else
 	{
 		return (previous_error_code);
 	}
