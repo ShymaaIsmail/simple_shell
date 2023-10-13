@@ -11,12 +11,12 @@ void free_all(int ptr_num, ...)
 		int ptr_index = 0;
 
 		va_list ptr;
-		void ***ptr_to_release;
+		void **ptr_to_release;
 
 		va_start(ptr, ptr_num);
 		while (ptr_index < ptr_num)
 		{
-		ptr_to_release = va_arg(ptr, void ***);
+		ptr_to_release = va_arg(ptr, void **);
 
 		if (*ptr_to_release != NULL)
 		{

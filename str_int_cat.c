@@ -6,43 +6,30 @@
  * str_int_cat - str_int_cat
  * @number: number
  * @str: str
- * Return: string
+ * Return: nothing
 */
-char *str_int_cat(int number, char *str)
+void str_int_cat(int number, char *str)
 {
-	int temp = number;
-	int digit_count = 0, result_length = 0, index = 0;
-	int str_length = str_len(str);
-	char *result, *number_str;
+	int i = 0, start = 0, end = 0;
+	char temp;
 
-	while (temp != 0)
-	{
-		digit_count++;
-		temp /= 10;
-	}
-	result_length = digit_count + str_length + 1;
-	result = malloc(result_length * sizeof(char));
-	if (result == NULL)
-	{
-		return (NULL);
-	}
-
-	number_str = malloc((digit_count + 1) * sizeof(char));
-	if (number_str == NULL)
-	{
-		free(result);
-		return (NULL);
-	}
-	index = digit_count - 1;
+	str = str == NULL ? "" : str;
 	while (number != 0)
 	{
-		number_str[index] = '0' + (number % 10);
-		number /= 10;
-		index--;
+		str[i] = '0' + number % 10;
+		number = number / 10;
+		i++;
 	}
-	number_str[digit_count] = '\0';
-	str_cpy(result, number_str);
-	str_cat(result, str);
-	free(number_str);
-	return (result);
+	str[i] = '\0';
+
+	  start = 0;
+	 end = i - 1;
+	while (start < end)
+	{
+		temp = str[start];
+		str[start] = str[end];
+		str[end] = temp;
+		start++;
+		end--;
+	}
 }

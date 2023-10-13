@@ -28,10 +28,13 @@ void remove_leading_traling_space(char *str)
 		}
 		length = str_len(str);
 		i = length - 1;
+		if (i >= 0)
+		{
 		while (str[i] == ' ')
 		{
 			str[i] = '\0';
 			i--;
+		}
 		}
 	}
 }
@@ -47,6 +50,8 @@ size_t get_rows_count(char *input)
 	char *rows_token;
 	char *temp_input = strdup(input);
 
+	if (temp_input != NULL)
+	{
 	remove_leading_traling_space(temp_input);
 	if (temp_input != NULL && str_len(temp_input) > 0)
 	{
@@ -58,6 +63,7 @@ size_t get_rows_count(char *input)
 	}
 	}
 	free(temp_input);
+	}
 	return (rows_count);
 }
 
@@ -74,6 +80,8 @@ size_t get_columns_count_by_row_index(char *input, size_t row_index)
 	size_t current_row = 0;
 	char *copy_input = strdup(input);
 
+	if (copy_input != NULL)
+	{
 	token = strtok(copy_input, New_Line_Delim);
 	while (token != NULL && current_row < row_index)
 	{
@@ -90,6 +98,7 @@ size_t get_columns_count_by_row_index(char *input, size_t row_index)
 		}
 	}
 	free(copy_input);
+	}
 	return (column_count);
 }
 
@@ -145,9 +154,8 @@ char *get_substring_by_indexes(char *input, size_t row_index,
 */
 char ***extract_tokens(char *user_input_ptr)
 {
-	char *user_input_ptr_copy = strdup(user_input_ptr);
-	char  ***argv = NULL;
-	size_t rows_count = 0, columns_count = 0, row_index, column_index = 0, i = 0;
+	char  ***argv = NULL, *user_input_ptr_copy = strdup(user_input_ptr);
+	size_t rows_count = 0, columns_count = 0, row_index, column_index = 0;
 
 	if (user_input_ptr_copy != NULL)
 	{
@@ -173,12 +181,7 @@ char ***extract_tokens(char *user_input_ptr)
 				}
 				else
 				{
-					for (i = 0; i < row_index; i++)
-					{
-						free(argv[i]);
-					}
-					free(argv);
-					argv = NULL;
+					free_argv(argv, row_index);
 					break;
 				}
 			}
