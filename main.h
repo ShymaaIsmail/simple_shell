@@ -8,6 +8,7 @@
 #include <signal.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/stat.h>
 #include "error_message.h"
 #include "string.h"
 #include "constant.h"
