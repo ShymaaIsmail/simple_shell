@@ -13,7 +13,7 @@ char *str_int_cat(int number, char *str)
 	int temp = number;
 	int digit_count = 0, result_length = 0, index = 0;
 	int str_length = str_len(str);
-	char *result, *number_str;
+	char *result = NULL, *number_str = NULL;
 
 	while (temp != 0)
 	{
@@ -42,7 +42,7 @@ char *str_int_cat(int number, char *str)
 	}
 	number_str[digit_count] = '\0';
 	str_cpy(result, number_str);
-	str_cat(result, str);
+	strcat(result, str);
 	free(number_str);
 	return (result);
 }

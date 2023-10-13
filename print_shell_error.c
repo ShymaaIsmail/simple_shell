@@ -14,19 +14,21 @@ const SHELL_ERORR shell_errors[] = {
 */
 void print_shell_error(enum ERROR_CODE error_code, int ptr_num, ...)
 {
+	char *original_message = NULL, *error_message =  NULL;
+	int char_index = 0, length = 0;
+	va_list ptr;
+	char *ptr_to_replace = NULL;
+	int int_value;
+
 	if ((int) error_code >= 0 && (int) error_code < MAX_CODE)
 	{
-		char *original_message = malloc(100);
-		char *error_message =  malloc(100);
-		int char_index = 0, length = 0;
-		va_list ptr;
-		char *ptr_to_replace;
-		int int_value;
-
 		if (ptr_num > 0)
 		{
+			original_message = malloc(150);
+			error_message = malloc(150);
 		if (original_message != NULL && error_message != NULL)
 		{
+			mem_set(error_message, 0, 150);
 			str_cpy(original_message, shell_errors[error_code].message);
 			va_start(ptr, ptr_num);
 			while (original_message[char_index] != '\0')
@@ -55,11 +57,20 @@ void print_shell_error(enum ERROR_CODE error_code, int ptr_num, ...)
 			}
 			va_end(ptr);
 			write(STDERR_FILENO, error_message, str_len(error_message));
-		}
-		free_all(2, &original_message, &error_message);
+			free(error_message);
+			free(original_message);
+			return;
 		}
 		else
+		{
+			free(error_message);
+			free(original_message);
+		}
+		}
+		else
+		{
 			write(STDERR_FILENO, shell_errors[error_code].message,
 			str_len(shell_errors[error_code].message));
+		}
 		}
 }

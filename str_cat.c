@@ -10,34 +10,25 @@
  */
 char *str_cat(char *s1, char *s2)
 {
-	char *str_new;
-	char *str_new_start;
-
-	s1 = (s1 == NULL) ? "" : s1;
-	s2 = (s2 == NULL) ? "" : s2;
-
-	str_new = (char *)malloc(sizeof(char) * (str_len(s1) + str_len(s2) + 1));
-	str_new_start = str_new;
+	int i;
+	int len1 = str_len(s1);
+	int len2 = str_len(s2);
+	char *str_new = (char *)malloc(sizeof(char) * (len1 + len2 + 1));
 
 	if (str_new == NULL)
 	{
 		return (NULL);
 	}
-	else
+
+	for (i = 0; i < len1; i++)
 	{
-	while (*s1 !=  '\0')
+		str_new[i] = s1[i];
+	}
+
+	for (i = 0; i < len2; i++)
 	{
-		*str_new = *s1;
-		str_new++;
-		s1++;
+		str_new[len1 + i] = s2[i];
 	}
-	while (*s2 !=  '\0')
-	{
-		*str_new = *s2;
-		str_new++;
-		s2++;
-	}
-	*str_new = '\0';
-	return (str_new_start);
-	}
+	str_new[len1 + len2] = '\0';
+	return (str_new);
 }
