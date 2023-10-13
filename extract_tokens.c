@@ -181,7 +181,7 @@ char ***extract_tokens(char *user_input_ptr)
 				}
 				else
 				{
-					free_tokens(argv);
+					free_argv(argv, row_index);
 					break;
 				}
 			}

@@ -5,6 +5,8 @@ automated_checker
 # test folder
 test/*.c
 
+#vim backup files
+*.swp
 # Prerequisites
 *.d
 

@@ -50,3 +50,20 @@ void free_tokens(char ***tokens)
 	}
 	free(tokens);
 }
+
+/**
+ * free_argv - free_argv
+ * @argv: argv
+ * @row_index: row_index
+*/
+void free_argv(char ***argv, int row_index)
+{
+	int i = 0;
+
+	for (i = 0; i < row_index; i++)
+	{
+		free(argv[i]);
+	}
+	free(argv);
+	argv = NULL;
+}

@@ -30,4 +30,5 @@ int execute_exit(char *input, char ***argv, char **command,
 				char *program_name, int line_number, int previous_error_code);
 void execute_env(int *exit_code);
 void free_tokens(char ***tokens);
+void free_argv(char ***argv, int row_index);
 #endif
