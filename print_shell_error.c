@@ -3,7 +3,8 @@
 
 const SHELL_ERORR shell_errors[] = {
 	{NOT_FOUND_COMMAND, "%s command not found  %s\n"},
-	{ILLEGAL_PARAMETER, "%s: %d: %s: Illegal number: %s\n"}
+	{ILLEGAL_PARAMETER, "%s: %d: %s: Illegal number: %s\n"},
+	{NOT_FOUND, "%s: %d: %s: not found\n"}
 };
 
 /**
