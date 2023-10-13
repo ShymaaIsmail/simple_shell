@@ -42,7 +42,7 @@ void print_shell_error(enum ERROR_CODE error_code, int ptr_num, ...)
 					else if (original_message[char_index + 1] == 'd')
 					{
 						int_value = va_arg(ptr, int);
-						ptr_to_replace = str_int_cat(int_value, "");
+						str_int_cat(int_value, ptr_to_replace);
 					}
 					error_message = strcat(error_message, ptr_to_replace);
 					char_index += 2;
