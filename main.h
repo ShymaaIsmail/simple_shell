@@ -32,4 +32,5 @@ int execute_exit(char *input, char ***argv, char **command,
 void execute_env(int *exit_code);
 void free_tokens(char ***tokens);
 void free_argv(char ***argv, int row_index);
+char *get_environment_variable(char *command);
 #endif
