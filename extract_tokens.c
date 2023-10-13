@@ -154,8 +154,7 @@ char *get_substring_by_indexes(char *input, size_t row_index,
 */
 char ***extract_tokens(char *user_input_ptr)
 {
-	char *user_input_ptr_copy = strdup(user_input_ptr);
-	char  ***argv = NULL;
+	char  ***argv = NULL, *user_input_ptr_copy = strdup(user_input_ptr);
 	size_t rows_count = 0, columns_count = 0, row_index, column_index = 0;
 
 	if (user_input_ptr_copy != NULL)
@@ -183,7 +182,6 @@ char ***extract_tokens(char *user_input_ptr)
 				else
 				{
 					free_tokens(argv);
-					argv = NULL;
 					break;
 				}
 			}
