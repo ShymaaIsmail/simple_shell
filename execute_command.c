@@ -57,7 +57,8 @@ int process_command(char **argv, int line_number)
 	}
 	else
 	{
-		fprintf(stderr, "./hsh: %d: %s: not found\n", line_number, command);
+		fprintf(stderr, "./hsh: %d: %s: not found\n", line_number, argv[0]);
+		return (127);
 	}
 	return (exit_code);
 }
