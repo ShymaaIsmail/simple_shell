@@ -14,7 +14,7 @@ int get_line_number(int line_index)
 * @argv: 2 d array for user input
 * Return: int
 */
-int process_command(char **argv, int line_number)
+int process_command(char **argv, char *program_name, int line_number)
 {
 	int exit_code;
 	char *command;
@@ -57,7 +57,8 @@ int process_command(char **argv, int line_number)
 	}
 	else
 	{
-		fprintf(stderr, "./hsh: %d: %s: not found\n", line_number, argv[0]);
+		print_shell_error((enum ERROR_CODE)NOT_FOUND, 3, program_name, line_number, argv[0]);
+		/*fprintf(stderr, "./hsh: %d: %s: not found\n", line_number, argv[0]); */
 		return (127);
 	}
 	return (exit_code);
@@ -94,7 +95,7 @@ void execute_command(char *input, char *program_name, char ***argv,
 				}
 				else
 				{
-					*exit_code = process_command(argv[line_index], get_line_number(line_index));
+					*exit_code = process_command(argv[line_index], program_name, get_line_number(line_index));
 				}
 			}
 			free_tokens(argv);
