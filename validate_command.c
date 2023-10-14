@@ -42,7 +42,7 @@ char *validate_command(char *command)
 	if (stat(command, &temp) == 0)
 		return command;
 	/* printf("after\n"); */
-	command_size = strlen(command);
+	command_size = str_len(command);
 	path = get_environment_variable("PATH");
 	copy = strdup(path);
 	token = strtok(copy, colon);
@@ -53,7 +53,7 @@ char *validate_command(char *command)
 
 	while(token)
 	{
-		token_size = strlen(token);
+		token_size = str_len(token);
 		file_path = malloc(token_size + command_size + 2);
 
 		if (file_path == NULL)
@@ -62,7 +62,7 @@ char *validate_command(char *command)
 			perror("Memory allocated error");
 		       	exit(1);
 		}
-		strcpy(file_path, token);
+		str_cpy(file_path, token);
 		strcat(file_path, "/");
 		strcat(file_path, command);
 		strcat(file_path, "\0");
