@@ -9,7 +9,7 @@ char *check_not_path_executable_pwd(char *executable_name)
 {
 	if (executable_name != NULL && str_len(executable_name) > 0
 	&& executable_name[0] != '.' && executable_name[0] != '/'
-	&& access(executable_name, F_OK) != -1 )
+	&& access(executable_name, F_OK) != -1)
 	{
 		return (NULL);
 	}
@@ -58,28 +58,19 @@ char *validate_command(char *command)
 	size_t command_size, token_size;
 	struct stat temp;
 
-	/* printf("after\n"); */
 	command_size = str_len(command);
 	path = get_environment_variable("PATH");
 	if (path != NULL)
 	{
 	copy = strdup(path);
 	token = strtok(copy, colon);
-
-	/* printf("the token: %s\n", token); */
-	/*printf("the copy: %s\n", copy); */
-	/*printf("the path: %s\n", path); */
-
-	while(token)
+	while (token)
 	{
 		token_size = str_len(token);
 		file_path = malloc(token_size + command_size + 2);
-
 		if (file_path == NULL)
 		{
-			free(copy);
-			perror("Memory allocated error");
-		       	exit(1);
+			free(copy), perror("Memory allocated error"), exit(1);
 		}
 		str_cpy(file_path, token);
 		strcat(file_path, "/");
@@ -87,23 +78,19 @@ char *validate_command(char *command)
 		strcat(file_path, "\0");
 		if (stat(file_path, &temp) == 0)
 		{
-			/*printf("valid: %s\n",path), */
 			free(copy);
 			return (file_path);
 		}
 		else
 		{
-			/*printf("nonvalid");*/
 			free(file_path);
-			token = strtok (NULL, colon);
+			token = strtok(NULL, colon);
 		}
 	}
 	}
 	if (check_not_path_executable_pwd(command) != NULL
 			&& stat(command, &temp) == 0)
-	{
 		return (command);
-	}
 	free(copy);
 	return (NULL);
 }
