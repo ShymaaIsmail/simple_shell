@@ -2,10 +2,10 @@
 #include "main.h"
 
 const SHELL_ERORR shell_errors[] = {
-	{NOT_FOUND_COMMAND, "%s command not found  %s\n"},
 	{ILLEGAL_PARAMETER, "%s: %d: %s: Illegal number: %s\n"},
 	{NOT_FOUND, "%s: %d: %s: not found\n"}
 };
+
 
 /**
  * process_shell_error - process_shell_error
@@ -37,13 +37,12 @@ void process_shell_error(enum ERROR_CODE error_code, va_list ptr)
 				else if (original_message[char_index + 1] == 'd')
 				{
 					int_value = va_arg(ptr, int);
-					str_int_cat(int_value, ptr_to_replace);
+					ptr_to_replace = int_to_string(int_value);
 				}
 				error_message = strcat(error_message, ptr_to_replace);
 				char_index += 2;
-				continue;
 			}
-			else
+			else if (original_message[char_index] != '%')
 			{
 				length = str_len(error_message);
 				error_message[length] = original_message[char_index];
@@ -68,12 +67,13 @@ void print_shell_error(enum ERROR_CODE error_code, int ptr_num, ...)
 {
 	va_list ptr;
 
-	va_start(ptr, ptr_num);
 	if ((int)error_code >= 0 && (int)error_code < MAX_CODE)
 	{
 		if (ptr_num > 0)
 		{
+			va_start(ptr, ptr_num);
 			process_shell_error(error_code, ptr);
+			va_end(ptr);
 			return;
 		}
 		else
@@ -82,5 +82,4 @@ void print_shell_error(enum ERROR_CODE error_code, int ptr_num, ...)
 				  str_len(shell_errors[error_code].message));
 		}
 	}
-	va_end(ptr);
 }

@@ -22,8 +22,8 @@ void str_int_cat(int number, char *str)
 	}
 	str[i] = '\0';
 
-	  start = 0;
-	 end = i - 1;
+	start = 0;
+	end = i - 1;
 	while (start < end)
 	{
 		temp = str[start];
