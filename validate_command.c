@@ -1,4 +1,23 @@
 #include "main.h"
+
+/**
+ * check_not_path_executable_pwd - check_not_path_executable_pwd
+ * @executable_name: executable_name
+ * Return: null or executable_name
+*/
+char *check_not_path_executable_pwd(char *executable_name)
+{
+	if (executable_name != NULL && str_len(executable_name) > 0
+	&& executable_name[0] != '.' && executable_name[0] != '/'
+	&& access(executable_name, F_OK) != -1 )
+	{
+		return (NULL);
+	}
+	else
+	{
+		return (executable_name);
+	}
+}
 /**
  * get_environment_variable - gets the variable environment's variale
  * @command: the command that will search about its environment value
@@ -38,9 +57,7 @@ char *validate_command(char *command)
 	char colon[] = ":";
 	size_t command_size, token_size;
 	struct stat temp;
-	
-	if (stat(command, &temp) == 0)
-		return command;
+
 	/* printf("after\n"); */
 	command_size = str_len(command);
 	path = get_environment_variable("PATH");
@@ -81,6 +98,11 @@ char *validate_command(char *command)
 			token = strtok (NULL, colon);
 		}
 	}
+	}
+	if (check_not_path_executable_pwd(command) != NULL
+			&& stat(command, &temp) == 0)
+	{
+		return (command);
 	}
 	free(copy);
 	return (NULL);
