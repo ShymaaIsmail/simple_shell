@@ -11,7 +11,7 @@ char *int_to_string(int number)
 	int length = 0;
 	int temp = number;
 	int index = 0;
-	char *str;
+	static char str[20];
 
 	if (number < 0)
 	{
@@ -24,7 +24,6 @@ char *int_to_string(int number)
 		temp /= 10;
 	} while (temp);
 
-	str = malloc((length + 1) * sizeof(char));
 	if (str != NULL)
 	{
 	index = length - 1;
