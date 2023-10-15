@@ -7,6 +7,7 @@ test/*.c
 
 #vim backup files
 *.c.swp
+allowed_functions
 # Prerequisites
 *.d
 

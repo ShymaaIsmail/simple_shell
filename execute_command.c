@@ -90,7 +90,8 @@ void execute_command(char *input, char *program_name, char ***argv,
 				}
 				else
 				{
-					*exit_code = process_command(argv[line_index], program_name, get_line_number(line_index));
+					*exit_code = process_command(argv[line_index], program_name,
+													get_line_number(line_index));
 				}
 			}
 			free_tokens(argv);

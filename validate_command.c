@@ -44,6 +44,8 @@ char *validate_command(char *command)
 	/* printf("after\n"); */
 	command_size = str_len(command);
 	path = get_environment_variable("PATH");
+	if (path != NULL)
+	{
 	copy = strdup(path);
 	token = strtok(copy, colon);
 
@@ -78,6 +80,7 @@ char *validate_command(char *command)
 			free(file_path);
 			token = strtok (NULL, colon);
 		}
+	}
 	}
 	free(copy);
 	return (NULL);
