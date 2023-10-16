@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * int_to_string - converts the interger into string to handle arguments
+ * int_to_string - converts the interger into string
  * @number: the integer argument
  * Return: (-1) if input was neg or chars, else the string
 */

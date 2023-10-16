@@ -3,10 +3,10 @@
 #include "main.h"
 
 /**
- * str_int_cat - str_int_cat
- * @number: number
- * @str: str
- * Return: nothing
+ * str_int_cat - converts str to int and connacetates it into provided string
+ * @number: integer
+ * @str: string
+ * Return: Void
 */
 void str_int_cat(int number, char *str)
 {

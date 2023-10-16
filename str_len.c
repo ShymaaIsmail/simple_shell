@@ -3,9 +3,9 @@
 #include "main.h"
 
 /**
- *str_len  - measure str length
- *@s: pointer to  string
- *Return:string length
+ *str_len  - measure the size of the string
+ *@s: pointer to the given string
+ *Return: string length (int)
  */
 
 int str_len(char *s)
