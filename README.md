@@ -35,8 +35,9 @@ Use a buffer to read many chars at once and call the least possible the read sys
 You will need to use static variables
 You are not allowed to use getline
 
-#our code flow: 
-
+our code flow: 
+first: the mode will be checked which is interactive or non interactive
+second: the prompt ("$ ") should be displayed to the user and wait for entred command 
 
 # AUTHORS
 
