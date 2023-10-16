@@ -35,9 +35,70 @@ Use a buffer to read many chars at once and call the least possible the read sys
 You will need to use static variables
 You are not allowed to use getline
 
-our code flow: 
-first: the mode will be checked which is interactive or non interactive
-second: the prompt ("$ ") should be displayed to the user and wait for entred command 
+#Compilation of the project:
+
+##the compilation code:
+###gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
+
+#the allowed functions and system calls of the project:
+
+1. access
+2. chdir
+3. close (man 2 close)
+4. closedir (man 3 closedir)
+5. execve (man 2 execve)
+6. exit (man 3 exit)
+7. _exit (man 2 _exit)
+8. fflush (man 3 fflush)
+9. fork (man 2 fork)
+10. free (man 3 free)
+11. getcwd (man 3 getcwd)
+12. getline (man 3 getline)
+13. getpid (man 2 getpid)
+14. isatty (man 3 isatty)
+15. kill (man 2 kill)
+16. malloc (man 3 malloc)
+17. open (man 2 open)
+18. opendir (man 3 opendir)
+19. perror (man 3 perror)
+20. read (man 2 read)
+21. readdir (man 3 readdir)
+22. signal (man 2 signal)
+23. stat (__xstat) (man 2 stat)
+24. lstat (__lxstat) (man 2 lstat)
+25. fstat (__fxstat) (man 2 fstat)
+26. strtok
+27. wait
+28. waitpid
+29. wait3
+30. wait4
+31. write
+
+#Testing
+
+the shell should work like this in interactive mode:
+$ ./hsh
+($) /bin/ls
+hsh main.c shell.c
+($)
+($) exit
+$
+also in non-interactive mode:
+$ echo "/bin/ls" | ./hsh
+hsh main.c shell.c test_ls_2
+$
+$ cat test_ls_2
+/bin/ls
+/bin/ls
+$
+$ cat test_ls_2 | ./hsh
+hsh main.c shell.c test_ls_2
+hsh main.c shell.c test_ls_2
+$
+
+#Output
+##program must have the exact same output as sh (/bin/sh) as well as the exact same error output.
+##he only difference is when you print an error, the name of the program must be equivalent to argv[0]
 
 # AUTHORS
 
