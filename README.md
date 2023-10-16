@@ -35,6 +35,9 @@ Use a buffer to read many chars at once and call the least possible the read sys
 You will need to use static variables
 You are not allowed to use getline
 
+#our code flow: 
+
+
 # AUTHORS
 
 ## Shymaa Ismail
