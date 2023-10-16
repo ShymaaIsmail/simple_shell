@@ -1,8 +1,8 @@
 #include "main.h"
 /**
 * free_all - free all passed pointers of any void* type
-* @ptr_num: number of passed pointers
-* Return: void
+* @ptr_num: conter of the num of passed pointers
+* Return: void (no return value)
 */
 void free_all(int ptr_num, ...)
 {

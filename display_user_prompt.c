@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
-* display_user_prompt - display_user_prompt
-* @argv: array of pointers with args
-* @exit_code: exit_code
-* Return: void
+* display_user_prompt - it display the user prompt that appear in the shell "$"
+* @argv: array of pointers with arguments
+* @exit_code: the exit_code that function will be terminated with
+* Return: void (Return Nothing)
 */
 void display_user_prompt(char **argv, int *exit_code)
 {

@@ -4,9 +4,9 @@
 
 /**
  *mem_set - fills memory with a constant byte
- *@s: pointer to  string
- *@b: character
- *@n: integer
+ *@s: pointer to  string passed
+ *@b: character that will fill memory
+ *@n: integer (count of the bytes)
  *Return: pointer to the memset
  */
 

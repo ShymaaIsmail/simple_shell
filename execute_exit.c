@@ -2,13 +2,13 @@
 
 /**
  * execute_exit - function that apply the exit of the shell
- * @command: the command that will be excuted
- * @program_name: program_name
- * @line_number: line_number
- * @previous_error_code: previous_error_code
- * @argv: argv
- * @input: input
- * Return: (void) no return value
+ * @command: the command that will be excuted (exit with or with out args)
+ * @program_name: program name to hanle error message
+ * @line_number: line index of the command
+ * @previous_error_code: error code of the previous error
+ * @argv:  pointer to 2D array argument
+ * @input: input of the user (command)
+ * Return: (void) no value will be returned
 */
 int execute_exit(char *input, char ***argv, char **command, char *program_name,
 					int line_number, int previous_error_code)

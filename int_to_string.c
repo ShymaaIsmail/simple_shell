@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
- * int_to_string - int_to_string
- * @number: number
- * Return: string
+ * int_to_string - converts the interger into string to handle arguments
+ * @number: the integer argument
+ * Return: (-1) if input was neg or chars, else the string
 */
 char *int_to_string(int number)
 {
