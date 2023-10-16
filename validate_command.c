@@ -25,22 +25,22 @@ char *check_not_path_executable_pwd(char *executable_name)
  */
 char *get_environment_variable(char *command)
 {
-	int idx1 = 0, idx2, size_command;
-	char *temp;
+	int environ_index = 0, iterator, size_command;
+	char *tempelate;
 
-	for (; environ[idx1] != NULL; ++idx1)
+	for (; environ[environ_index] != NULL; ++environ_index)
 	{
-		temp = environ[idx1];
+		tempelate = environ[environ_index];
 		size_command = str_len(command);
 
-		for (idx2 = 0; idx2 < size_command; idx2++)
+		for (iterator = 0; iterator < size_command; iterator++)
 		{
-			if (temp[idx2] != command[idx2])
+			if (tempelate[iterator] != command[iterator])
 				break;
 		}
-		if (idx2 == size_command && temp[idx2] == '=')
+		if (iterator == size_command && tempelate[iterator] == '=')
 		{
-			return (temp + idx2 + 1);
+			return (tempelate + iterator + 1);
 		}
 	}
 	return (NULL);
@@ -56,7 +56,7 @@ char *validate_command(char *command)
 	char *path, *copy, *token, *file_path;
 	char colon[] = ":";
 	size_t command_size, token_size;
-	struct stat temp;
+	struct stat tempelate;
 
 	command_size = str_len(command);
 	path = get_environment_variable("PATH");
@@ -76,7 +76,7 @@ char *validate_command(char *command)
 		strcat(file_path, "/");
 		strcat(file_path, command);
 		strcat(file_path, "\0");
-		if (stat(file_path, &temp) == 0)
+		if (stat(file_path, &tempelate) == 0)
 		{
 			free(copy);
 			return (file_path);
@@ -89,7 +89,7 @@ char *validate_command(char *command)
 	}
 	}
 	if (check_not_path_executable_pwd(command) != NULL
-			&& stat(command, &temp) == 0)
+			&& stat(command, &tempelate) == 0)
 		return (command);
 	free(copy);
 	return (NULL);
