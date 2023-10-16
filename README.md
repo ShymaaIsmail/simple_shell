@@ -100,6 +100,21 @@ $
 ##program must have the exact same output as sh (/bin/sh) as well as the exact same error output.
 ##he only difference is when you print an error, the name of the program must be equivalent to argv[0]
 
+#Requirements
+
+1- Allowed editors: vi, vim, emacs
+2- All files will be compiled on Ubuntu 20.04 LTS using gcc, using the options -Wall -Werror -Wextra -pedantic -std=gnu89
+3- All files should end with a new line
+4- A README.md file, at the root of the folder of the project is mandatory
+5- code should use the Betty style. It will be checked using betty-style.pl and betty-doc.pl
+6- shell should not have any memory leaks
+7- No more than 5 functions per file
+8- All your header files should be include guarded
+9- Use system calls only when you need to (why?)
+10- Write a README with the description of your project
+11- You should have an AUTHORS file at the root of your repository, listing all individuals having contributed content to the repository. Format, see Docker
+
+
 # AUTHORS
 
 ## Shymaa Ismail
