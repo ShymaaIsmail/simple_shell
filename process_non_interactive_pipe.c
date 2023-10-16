@@ -1,9 +1,10 @@
 #include "main.h"
 
 /**
-* process_non_interactive_pipe - process_non_interactive_pipe
-* @program_name: program_name
-* @exit_code: exit_code
+* process_non_interactive_pipe - process command in non interactive pipe
+* @program_name: name of the program to handles errors
+* @exit_code: the exit code of the function
+* Return: Void
 */
 void process_non_interactive_pipe(char *program_name, int *exit_code)
 {

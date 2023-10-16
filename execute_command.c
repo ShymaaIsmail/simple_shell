@@ -1,20 +1,20 @@
 #include "main.h"
 
 /**
- * get_line_number - get_line_number
- * @line_index: line_index
- * Return: stringified line number
+ * get_line_number - get the index of the enterd command in the shell
+ * @line_index: th index of the line
+ * Return: stringified line number (Int)
 */
 int get_line_number(int line_index)
 {
 	return (line_index + 1);
 }
 /**
-* process_command - execute_command
+* process_command - It hansles the "validate_command" and processes it
 * @argv: 2 d array for user input
-* @program_name: program_name
-* @line_number: line_number
-* Return: int
+* @program_name: the name of the program for handlig errors
+* @line_number: index of the command in the shell
+* Return: integer
 */
 int process_command(char **argv, char *program_name, int line_number)
 {
@@ -60,11 +60,12 @@ int process_command(char **argv, char *program_name, int line_number)
 }
 
 /**
-* execute_command - execute_command
-* @program_name: program name
+* execute_command - executes all commands that passed to the shell
+* @program_name: the name of the program for handlig errors
 * @argv: 2d array for user input
-* @exit_code: exit code
+* @exit_code: the exit code the function will terminate with
 * @input: input
+* Return: Void
 */
 void execute_command(char *input, char *program_name, char ***argv,
 					int *exit_code)

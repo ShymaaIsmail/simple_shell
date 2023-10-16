@@ -3,10 +3,10 @@
 #include "main.h"
 
 /**
- *str_cpy - string copy and return pointer
- *@dest: pointer to the destination
- *@src: pointer to the source
- *Return: return a point of string to the destination
+ *str_cpy - copy the string into another one
+ *@dest: pointer to the destination string
+ *@src: pointer to the source string
+ *Return: return a pointer to the destination
  */
 
 char *str_cpy(char *dest, char *src)

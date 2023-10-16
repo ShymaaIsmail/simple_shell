@@ -1,6 +1,7 @@
 #include "main.h"
 /**
-* execute_eof - execute_eof
+* execute_eof - execute eof (end of the file case)
+* Return: Void
 */
 void execute_eof(void)
 {

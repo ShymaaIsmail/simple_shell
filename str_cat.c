@@ -4,9 +4,9 @@
 #include "main.h"
 /**
  *str_cat - concatenates two strings
- *@s1: string 1
- *@s2: string 2
- *Return: pointer to the concatenated string
+ *@s1: first string
+ *@s2: second string
+ *Return: pointer to string after concatenating
  */
 char *str_cat(char *s1, char *s2)
 {

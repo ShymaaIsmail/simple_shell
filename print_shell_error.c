@@ -8,10 +8,10 @@ const SHELL_ERORR shell_errors[] = {
 
 
 /**
- * process_shell_error - process_shell_error
- * @error_code: error_code
- * @ptr: ptr
- * Return: nothing
+ * process_shell_error - processes errors of the shell
+ * @error_code: object that identify the error type
+ * @ptr: pointer
+ * Return: nothing (Void)
 */
 void process_shell_error(enum ERROR_CODE error_code, va_list ptr)
 {
@@ -58,10 +58,10 @@ void process_shell_error(enum ERROR_CODE error_code, va_list ptr)
 
 
 /**
-* print_shell_error - dynamic print for error msg based on enum code
+* print_shell_error - dynamic print for error msg based on the error code
 * @error_code: enum for shell_error codes
-* @ptr_num: number of passed pointers
-* Return: void
+* @ptr_num: number of passed pointers to the function
+* Return: void (No return value)
 */
 void print_shell_error(enum ERROR_CODE error_code, int ptr_num, ...)
 {

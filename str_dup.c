@@ -2,10 +2,9 @@
 #include <string.h>
 #include "main.h"
 /**
- *str_dup  - returns a pointer to a newly allocated
- *space in memory, which contains a copy of the string given as a parameter.
+ *str_dup  - string duplication
  *@str: string
- *Return: pointer to the newly copied string
+ *Return: pointer to the newly duplicated string
  */
 char *str_dup(char *str)
 {

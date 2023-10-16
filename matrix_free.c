@@ -1,8 +1,8 @@
 #include "main.h"
 
 /**
- * free_matrix - frees the 2d array
- * @mat: the matrix that will be freed
+ * free_matrix - frees the 2d array pointers
+ * @mat: the matrix of pointers that will be freed
  * Return: (Void) no value
  */
 void free_matrix(char **mat)
@@ -20,8 +20,9 @@ void free_matrix(char **mat)
 }
 
 /**
- * free_tokens - free_tokens
- * @tokens: tokens
+ * free_tokens - frees the tokens that executed by program
+ * @tokens: the pointers that will be freed
+ * Return: void
 */
 void free_tokens(char ***tokens)
 {
@@ -52,9 +53,10 @@ void free_tokens(char ***tokens)
 }
 
 /**
- * free_argv - free_argv
- * @argv: argv
- * @row_index: row_index
+ * free_argv - pointer to 2d pointers array
+ * @argv: the matrix that will be freed
+ * @row_index: index of the row
+ * Return: Void
 */
 void free_argv(char ***argv, int row_index)
 {

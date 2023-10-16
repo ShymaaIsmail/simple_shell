@@ -7,12 +7,12 @@
 #include <unistd.h>
 
 /**
- * enum ERROR_CODE - ERROR_CODE
- * @NOT_FOUND: NOT_FOUND
- * @ILLEGAL_PARAMETER: ILLEGAL_PARAMETER
+ * enum ERROR_CODE - enum that contains the error code that appears for user
+ * @NOT_FOUND: object (type of error) "NOT FOUND command"
+ * @ILLEGAL_PARAMETER: object when passing to the command not accepted arg
  * @MAX_CODE: MAX_CODE
  *
- * Description: error codes
+ * Description: error codes that will be appear to the user in the shell
 */
 typedef enum ERROR_CODE
 {
@@ -22,9 +22,9 @@ typedef enum ERROR_CODE
 } ERROR_CODE;
 
 /**
-* struct SHELL_ERORR - SHELL ERORR TYPES
-* @code: error code number sart from 0
-* @message: error message
+* struct SHELL_ERORR - struct that contains all SHELL ERORR TYPES
+* @code: index of the error code starts from 0
+* @message: the content of error message
 * Description: SHELL ERORR TYPES
 */
 typedef struct SHELL_ERORR

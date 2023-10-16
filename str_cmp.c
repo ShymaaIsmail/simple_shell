@@ -3,9 +3,9 @@
 #include "main.h"
 
 /**
- *str_cmp - string compare
- *@s1: pointer to first string
- *@s2: pointer to second  string
+ *str_cmp - compares 2 strings
+ *@s1: pointer to string 1
+ *@s2: pointer to string 2
  *Return: int to indicate which string is bigger thatn the other
  */
 

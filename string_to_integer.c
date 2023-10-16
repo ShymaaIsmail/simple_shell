@@ -3,9 +3,9 @@
 #include <stdio.h>
 
 /**
- * stoi - converts the string to an integer
+ * stoi - converts the string to an integer to handles the arguments of command
  * @s: string that will be converted
- * Return: integer converted
+ * Return: converted integer
  */
 int stoi(char *s)
 {

@@ -2,9 +2,9 @@
 
 
 /**
- * remove_leading_traling_space - remove_leading_traling_space
- * @str: str
- * Return: clean string
+ * remove_leading_traling_space - removes the trailing white spaces in input
+ * @str: input command of the user
+ * Return: (void) cleans string
 */
 void remove_leading_traling_space(char *str)
 {
@@ -40,9 +40,9 @@ void remove_leading_traling_space(char *str)
 }
 
 /**
- * get_rows_count - get_rows_count
- * @input: input
- * Return: int
+ * get_rows_count - counts the rows of the 2d array
+ * @input: input array
+ * Return: int (num of the rows)
 */
 size_t get_rows_count(char *input)
 {
@@ -68,10 +68,10 @@ size_t get_rows_count(char *input)
 }
 
 /**
- * get_columns_count_by_row_index - get_columns_count_by_row_index
- * @input: input
- * @row_index: row_index
- * Return: int
+ * get_columns_count_by_row_index - caluclate the index of the column
+ * @input: the input array
+ * @row_index: index of the row
+ * Return: int (column count)
 */
 size_t get_columns_count_by_row_index(char *input, size_t row_index)
 {
@@ -103,11 +103,11 @@ size_t get_columns_count_by_row_index(char *input, size_t row_index)
 }
 
 /**
- * get_substring_by_indexes - get_substring_by_indexes
- * @input: input
- * @row_index: row_index
- * @column_index: column_index
- * Return: string
+ * get_substring_by_indexes - get substrings to handle the commands
+ * @input: input string the user entred
+ * @row_index: index of the row
+ * @column_index: index of the column
+ * Return: string (command of the user after processinf function)
 */
 char *get_substring_by_indexes(char *input, size_t row_index,
 								size_t column_index)
@@ -147,10 +147,9 @@ char *get_substring_by_indexes(char *input, size_t row_index,
 }
 
 /**
-* extract_tokens - extract_tokens
-* @user_input_ptr: pointer to content entered by a user
+* extract_tokens - extract the commands the user entered
+* @user_input_ptr: pointer to content entered in the shell
 * Return: 2 dimensional array of all commands lines
-* and arguments written by the user
 */
 char ***extract_tokens(char *user_input_ptr)
 {

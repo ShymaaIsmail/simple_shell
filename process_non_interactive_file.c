@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
- *  process_non_interactive_file - process_non_interactive_file
- * @argv: array of args
- * @exit_code: exit_code
+ *  process_non_interactive_file - process command in the non interactive mode
+ * @argv: array of arguments
+ * @exit_code: the exit code of the function
 */
 void process_non_interactive_file(char **argv, int *exit_code)
 {

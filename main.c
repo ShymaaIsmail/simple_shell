@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
-* main - main
+* main - main (the start point of execute program)
 * @ac: d
-* @argv: f
-* Return: int
+* @argv: pointer to 2d array
+* Return: integer
 */
 int main(int ac, char **argv)
 {

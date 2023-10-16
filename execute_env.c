@@ -1,8 +1,8 @@
 #include "main.h"
 
 /**
- *  execute_env - prints local environment variables
- * @exit_code: exit_code
+ *  execute_env - prints local environment variables, hanle command "env"
+ * @exit_code: the exit status that the program will terminate with
  * Return: void
 */
 void execute_env(int *exit_code)
