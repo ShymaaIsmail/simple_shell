@@ -71,8 +71,7 @@ char *validate_command(char *command)
 		{
 			free(copy), perror("Memory allocated error"), exit(1);
 		}
-		str_cpy(file_path, token);
-		strcat(file_path, "/");
+		str_cpy(file_path, token), strcat(file_path, "/");
 		strcat(file_path, command), strcat(file_path, "\0");
 		if (stat(file_path, &tempelate) == 0)
 		{
