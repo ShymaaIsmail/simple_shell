@@ -69,7 +69,7 @@ char *validate_command(char *command)
 		file_path = malloc(token_size + command_size + 2);
 		if (file_path == NULL)
 		{
-			free(copy), perror("Memory allocated error"), exit(1);
+			break;
 		}
 		str_cpy(file_path, token), strcat(file_path, "/");
 		strcat(file_path, command), strcat(file_path, "\0");
