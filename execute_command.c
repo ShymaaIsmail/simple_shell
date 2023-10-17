@@ -1,5 +1,22 @@
 #include "main.h"
 
+
+/**
+ * check_free - check_free
+ * @original_command: original_command
+ * @final_command: final_command
+ * Return: nothing
+*/
+void check_free(char *original_command, char *final_command)
+{
+	if (original_command && final_command)
+	{
+		if (str_len(original_command) != str_len(final_command))
+		{
+			free(final_command);
+		}
+	}
+}
 /**
  * get_line_number - get the index of the enterd command in the shell
  * @line_index: th index of the line
@@ -49,6 +66,7 @@ int process_command(char **argv, char *program_name, int line_number)
 			else
 					exit_code = 3;
 		}
+		check_free(argv[0], command);
 	}
 	else
 	{
