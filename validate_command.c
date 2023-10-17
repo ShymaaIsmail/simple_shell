@@ -54,7 +54,6 @@ char *get_environment_variable(char *command)
 char *validate_command(char *command)
 {
 	char *path, *copy, *token, *file_path;
-	char colon[] = ":";
 	size_t command_size, token_size;
 	struct stat tempelate;
 
@@ -63,7 +62,7 @@ char *validate_command(char *command)
 	if (path != NULL)
 	{
 	copy = strdup(path);
-	token = strtok(copy, colon);
+	token = strtok(copy, COLON);
 	while (token)
 	{
 		token_size = str_len(token);
@@ -74,8 +73,7 @@ char *validate_command(char *command)
 		}
 		str_cpy(file_path, token);
 		strcat(file_path, "/");
-		strcat(file_path, command);
-		strcat(file_path, "\0");
+		strcat(file_path, command), strcat(file_path, "\0");
 		if (stat(file_path, &tempelate) == 0)
 		{
 			free(copy);
@@ -84,13 +82,16 @@ char *validate_command(char *command)
 		else
 		{
 			free(file_path);
-			token = strtok(NULL, colon);
+			token = strtok(NULL, COLON);
 		}
 	}
 	}
 	if (check_not_path_executable_pwd(command) != NULL
 			&& stat(command, &tempelate) == 0)
+	{
+		free(copy);
 		return (command);
+	}
 	free(copy);
 	return (NULL);
 }

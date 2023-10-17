@@ -5,6 +5,7 @@
 #define Prompt_Title  "$ "
 #define Space_Delim  " "
 #define New_Line_Delim  "\n"
+#define COLON ":"
 
 /* shell program exit codes */
 #define EXIT_SUCCESS 0
