@@ -80,6 +80,8 @@ void execute_command(char *input, char *program_name, char ***argv,
 			{
 
 				command = argv[line_index][0];
+				if (command != NULL)
+				{
 				if (str_cmp(command, EXIT) == 0)
 				{
 					*exit_code = execute_exit(input, argv, argv[line_index], program_name,
@@ -93,6 +95,7 @@ void execute_command(char *input, char *program_name, char ***argv,
 				{
 					*exit_code = process_command(argv[line_index], program_name,
 													get_line_number(line_index));
+				}
 				}
 			}
 			free_tokens(argv);
