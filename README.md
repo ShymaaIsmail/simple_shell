@@ -3,7 +3,11 @@
 ## This is an ALX Cohort 18 project ( Last project in the first semester)
 
 This is a simple shell project written in C progrmming language to behave exactly as sh (/bin/sh) program.
+
 #What is the shell?
+The shell is a program that takes commands from the keyboard via the terminal, and gives them to the operating system to perform.
+
+
 We implement may features like:
 1. Simple shell 0.1
 mandatory
