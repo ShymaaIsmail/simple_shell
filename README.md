@@ -8,6 +8,8 @@ This is a simple shell project written in C progrmming language to behave exactl
 a program takes commands and gives them to the operating system to perform them.
 
 important Functionalities:
+1- Displays a prompt
+2- Runs all commands
 
 We implement may features like:
 1. Simple shell 0.1
